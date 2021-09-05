@@ -1,10 +1,21 @@
 import React from "react";
+import { ThemeProvider } from "styled-components";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-const App = (): React.ReactElement => {
+import Home from "./views/Home";
+import PageNotFound from "./views/PageNotFound";
+import theme from "./theme";
+
+const App: React.FC = () => {
   return (
-    <>
-      <h1>Olá Mundo TS!</h1>
-    </>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="*" component={PageNotFound} />
+        </Switch>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
