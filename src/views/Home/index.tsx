@@ -1,16 +1,13 @@
 import React from "react";
-import RestaurantCard from "../../components/RestaurantCard";
-import SearchBar from "../../components/SearchBar";
 
-import Title from "../../components/Title";
+import { HomeContainer } from "./style";
+import Sidebar from "../../components/Sidebar";
 
 const Home: React.FC = () => {
   return (
-    <>
-      <Title>Home is working!</Title>
-      <SearchBar searchCallback={console.log} />
-      <RestaurantCard />
-    </>
+    <HomeContainer>
+      <Sidebar />
+    </HomeContainer>
   );
 };
 

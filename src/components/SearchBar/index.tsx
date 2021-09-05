@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import lupa from "../../../assets/lupa.svg";
+import Lupa from "../../../assets/lupa.svg";
 
 import {
   SearchBarProps,
@@ -36,7 +36,7 @@ const SearchBar: React.FC<ExtendendProps> = ({
         required
       />
       <SearchButton type="button" onClick={handleClick}>
-        <img src={lupa} width="80%" height="80%" />
+        <img src={Lupa} width="80%" height="80%" />
       </SearchButton>
     </SearchContainer>
   );

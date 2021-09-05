@@ -8,9 +8,13 @@ const ResetStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
+  body, #root {
     width: 100%;
     min-height: 100vh;
+  }
+
+  #root {
+    padding: 10px;
   }
 `;
 
