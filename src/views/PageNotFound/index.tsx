@@ -11,7 +11,9 @@ const PageNotFound: React.FC = () => {
   return (
     <>
       <Title>PageNotFound is working!</Title>
-      <Button buttonType="primary">Back To Home</Button>
+      <Button colorType="alert" buttonWidth="200px">
+        Back To Home
+      </Button>
     </>
   );
 };

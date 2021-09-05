@@ -1,26 +1,35 @@
 import styled from "styled-components";
 
-const BaseButton = styled.button`
+export interface ButtonProps {
+  colorType: string;
+  buttonWidth?: string;
+}
+
+export const StyledButton = styled.button<ButtonProps>`
   border: none;
   border-radius: 5px;
   height: 40px;
   font-weight: bold;
   font-family: ${(props) => props.theme.fonts.title};
+  background-color: ${(props) => {
+    switch (props.colorType) {
+      case "primary":
+        return props.theme.colors.primary;
+      case "secondary":
+        return props.theme.colors.secondary;
+      case "alert":
+        return props.theme.colors.alert;
+      default:
+        throw new Error(
+          "colorType value is invalid. Valid options: primary, secondary or alert"
+        );
+    }
+  }};
   color: #fff;
-  width: 120px;
-  cursor: pointer;
-`;
+  width: ${(props) => props.buttonWidth || "100px"};
 
-const PrimaryButton = styled(BaseButton)`
-  background-color: ${(props) => props.theme.colors.primary};
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
 `;
-
-const SecondaryButton = styled(BaseButton)`
-  background-color: ${(props) => props.theme.colors.secondary};
-`;
-
-const AlertButton = styled(BaseButton)`
-  background-color: ${(props) => props.theme.colors.alert};
-`;
-
-export { PrimaryButton, SecondaryButton, AlertButton };
