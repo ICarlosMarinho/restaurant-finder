@@ -1,17 +1,26 @@
 import styled from "styled-components";
 
+export interface SearchInput {
+  inputActive: boolean;
+}
+
 export interface SearchBarProps {
   containerWidth?: string;
   containerHeight?: string;
 }
 
-export const SearchContainer = styled.div<SearchBarProps>`
+export const SearchContainer = styled.div<SearchBarProps & SearchInput>`
   width: ${(props) => props.containerHeight || "300px"};
   height: ${(props) => props.containerHeight || "40px"};
   display: flex;
   flex-direction: row;
   border-radius: 5px;
-  border: ${(props) => `2px solid ${props.theme.colors.lighterGray}`};
+  border: ${(props) =>
+    `2px solid ${
+      props.inputActive
+        ? props.theme.colors.primary
+        : props.theme.colors.lighterGray
+    }`};
 `;
 
 export const SearchInput = styled.input`
@@ -23,16 +32,18 @@ export const SearchInput = styled.input`
   border: none;
 
   &:focus {
-    border: ${(props) => `2px solid ${props.theme.colors.secondary}`};
     outline: none;
   }
 `;
 
-export const SearchButton = styled.button`
+export const SearchButton = styled.button<SearchInput>`
   width: 20%;
   height: 100%;
   border: none;
-  background-color: ${(props) => props.theme.colors.lighterGray};
+  background-color: ${(props) =>
+    props.inputActive
+      ? props.theme.colors.primary
+      : props.theme.colors.lighterGray};
   display: flex;
   align-items: center;
   justify-content: center;

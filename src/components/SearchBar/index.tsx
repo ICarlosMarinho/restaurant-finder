@@ -19,6 +19,7 @@ const SearchBar: React.FC<ExtendendProps> = ({
   searchCallback,
 }) => {
   const [searchStr, setSearchStr] = useState("");
+  const [inputActive, setInputActive] = useState(false);
 
   const handleClick = (evt: React.MouseEvent) => {
     searchCallback(evt, searchStr);
@@ -26,6 +27,7 @@ const SearchBar: React.FC<ExtendendProps> = ({
 
   return (
     <SearchContainer
+      inputActive={inputActive}
       containerWidth={containerWidth}
       containerHeight={containerHeight}>
       <SearchInput
@@ -33,9 +35,15 @@ const SearchBar: React.FC<ExtendendProps> = ({
         max="100"
         value={searchStr}
         onChange={(evt) => setSearchStr(evt.target.value)}
+        onFocus={() => setInputActive(true)}
+        onBlur={() => setInputActive(false)}
+        placeholder="Buscar restaurante"
         required
       />
-      <SearchButton type="button" onClick={handleClick}>
+      <SearchButton
+        inputActive={inputActive}
+        type="button"
+        onClick={handleClick}>
         <img src={Lupa} width="80%" height="80%" />
       </SearchButton>
     </SearchContainer>

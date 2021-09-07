@@ -12,10 +12,6 @@ const ResetStyle = createGlobalStyle`
     width: 100%;
     min-height: 100vh;
   }
-
-  #root {
-    padding: 10px;
-  }
 `;
 
 export default ResetStyle;

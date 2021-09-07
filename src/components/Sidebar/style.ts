@@ -7,4 +7,5 @@ export const SidebarContainer = styled.aside`
   row-gap: 20px;
   align-items: center;
   justify-content: flex-start;
+  padding: 20px 0;
 `;
