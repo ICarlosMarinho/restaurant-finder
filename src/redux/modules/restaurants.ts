@@ -1,8 +1,21 @@
+import { PayloadAction } from "@reduxjs/toolkit";
+
 import Restaurant from "../../interfaces/Restaurant";
 
-const initialState = { restaurants: [], selectedRestaurant: null };
+interface RestaurantState {
+  restaurants: Restaurant[];
+  selectedRestaurant: Restaurant | null;
+}
 
-const reducer = (state = initialState, action: any) => {
+const initialState: RestaurantState = {
+  restaurants: [],
+  selectedRestaurant: null,
+};
+
+const reducer = (
+  state = initialState,
+  action: PayloadAction<Restaurant[] | Restaurant>
+) => {
   switch (action.type) {
     case types.SET_RESTAURANTS:
       return { ...state, restaurants: action.payload };

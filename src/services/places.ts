@@ -8,8 +8,8 @@ export const getRestaurantsFromApi = (
   map: any,
   location: Coordinates | null,
   radius: number,
-  success: any,
-  error: any
+  success: (resaurant: Restaurant[]) => void,
+  error: (status: any) => void
 ): void => {
   const service = new google.maps.places.PlacesService(map);
   const request = { location, radius, type: ["restaurant"] };

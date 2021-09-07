@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLoadScript } from "@react-google-maps/api";
 import { Libraries } from "@react-google-maps/api/dist/utils/make-load-script-url";
 
@@ -33,6 +33,8 @@ const Map: React.FC<MapProps> = ({ center, zoom }) => {
       renderMap();
       getUserLocation();
     }
+
+    if (loadError) console.log(loadError);
   }, [isLoaded]);
 
   useEffect(() => {

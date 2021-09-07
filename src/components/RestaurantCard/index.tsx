@@ -8,14 +8,17 @@ import {
   CardImg,
 } from "./style";
 
-const RestaurantCard: React.FC = () => {
+const RestaurantCard: React.FC<{
+  address: string;
+  name: string;
+  rating: number;
+}> = ({ address, name, rating }) => {
   return (
     <CardContainer>
       <CardInfoContainer>
-        <CardTitle>Hello Title</CardTitle>
-        <CardText>Hello card text!</CardText>
+        <CardTitle>{name}</CardTitle>
+        <CardText>{address}</CardText>
       </CardInfoContainer>
-      <CardImg src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Tom%27s_Restaurant%2C_NYC.jpg/1200px-Tom%27s_Restaurant%2C_NYC.jpg" />
     </CardContainer>
   );
 };

@@ -3,20 +3,17 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
-  border-radius: 5px;
-  width: 500px;
-  padding: 10px;
   background-color: #fff;
+  padding: 10px;
 `;
 
 export const CardInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 70%;
 `;
 
-export const CardTitle = styled.h2`
+export const CardTitle = styled.h3`
   font-family: ${(props) => props.theme.fonts.title};
   color: ${(props) => props.theme.colors.darkerGray};
 `;

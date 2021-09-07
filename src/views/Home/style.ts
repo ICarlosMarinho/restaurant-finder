@@ -5,6 +5,6 @@ export const HomeContainer = styled.div`
   width: 100%;
   min-height: 100vh;
   grid-template-areas: "sidebar main";
-  grid-template-rows: auto;
+  grid-template-rows: 100vh;
   grid-template-columns: 25% auto;
 `;
