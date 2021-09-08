@@ -14,13 +14,14 @@ interface MapProps {
   zoom: number;
 }
 
-declare const google: any;
 const libraries: Libraries = ["places"];
 
 const Map: React.FC<MapProps> = ({ center, zoom }) => {
   const containerRef = useRef(null);
   const dispatch = useDispatch();
-  const [map, setMap] = useState<{ setCenter: any } | null>(null);
+  const [map, setMap] = useState<{
+    setCenter: (center: Coordinates) => void;
+  } | null>(null);
   const [location, setLocation] = useState(null);
   const [radius, setRadius] = useState(50000);
   const { isLoaded, loadError } = useLoadScript({
@@ -50,7 +51,7 @@ const Map: React.FC<MapProps> = ({ center, zoom }) => {
         console.log
       );
     }
-  }, [location, map]);
+  }, [location]);
 
   const getUserLocation = () => {
     setLocation(new google.maps.LatLng(center?.lat, center?.lng));

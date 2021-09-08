@@ -2,8 +2,6 @@ import Coordinates from "../interfaces/Coordinates";
 import Restaurant from "../interfaces/Restaurant";
 import { getFormatedRestaurant } from "../utils";
 
-declare const google: any;
-
 export const getRestaurantsFromApi = (
   map: any,
   location: Coordinates | null,
