@@ -8,7 +8,7 @@ const ResetStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body, #root {
+  body, #app-root {
     width: 100%;
     height: 100vh;
   }

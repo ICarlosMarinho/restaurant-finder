@@ -6,6 +6,7 @@ interface Restaurant {
   location: Coordinates;
   name: string;
   rating: number;
+  imgUrl: string;
 }
 
 export default Restaurant;

@@ -12,13 +12,15 @@ const RestaurantCard: React.FC<{
   address: string;
   name: string;
   rating: number;
-}> = ({ address, name, rating }) => {
+  imgUrl: string;
+}> = ({ address, name, rating, imgUrl }) => {
   return (
     <CardContainer>
       <CardInfoContainer>
         <CardTitle>{name}</CardTitle>
         <CardText>{address}</CardText>
       </CardInfoContainer>
+      <CardImg src={imgUrl} alt={`Restaurante ${name}`} />
     </CardContainer>
   );
 };

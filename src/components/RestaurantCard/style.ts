@@ -5,6 +5,8 @@ export const CardContainer = styled.div`
   flex-direction: row;
   background-color: #fff;
   padding: 10px;
+  column-gap: 10px;
+  align-items: center;
 `;
 
 export const CardInfoContainer = styled.div`
@@ -25,6 +27,7 @@ export const CardText = styled.p`
 
 export const CardImg = styled.img`
   border-radius: 5px;
-  width: 30%;
-  height: auto;
+  width: 80px;
+  height: 80px;
+  image-rendering: optimizeQuality;
 `;

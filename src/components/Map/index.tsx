@@ -23,7 +23,7 @@ const Map: React.FC<MapProps> = ({ center, zoom }) => {
     setCenter: (center: Coordinates) => void;
   } | null>(null);
   const [location, setLocation] = useState(null);
-  const [radius, setRadius] = useState(50000);
+  const [radius, setRadius] = useState(5000);
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.API_KEY as string,
     libraries,

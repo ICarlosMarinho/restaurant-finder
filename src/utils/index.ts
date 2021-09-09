@@ -13,6 +13,7 @@ export const getFormatedRestaurant = (restaurant: any) => {
     location: formattedLocation,
     name: restaurant.name,
     rating: restaurant.rating,
+    imgUrl: restaurant.photos[0]?.getUrl() || "",
   };
 
   return formattedRestaurant;

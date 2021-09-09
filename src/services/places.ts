@@ -10,7 +10,11 @@ export const getRestaurantsFromApi = (
   error: (status: any) => void
 ): void => {
   const service = new google.maps.places.PlacesService(map);
-  const request = { location, radius, type: ["restaurant"] };
+  const request = {
+    location,
+    radius,
+    type: ["restaurant"],
+  };
 
   service.textSearch(request, (results: [], status: any) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {

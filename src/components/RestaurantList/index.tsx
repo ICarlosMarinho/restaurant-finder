@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import Restaurant from "../../interfaces/Restaurant";
 import { RootState } from "../../redux/store";
@@ -16,6 +16,7 @@ const RestaurantList: React.FC = () => {
         address={restaurant.address}
         name={restaurant.name}
         rating={restaurant.rating}
+        imgUrl={restaurant.imgUrl}
       />
     ));
 
