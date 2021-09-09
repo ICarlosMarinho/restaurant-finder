@@ -42,5 +42,6 @@ export const CardImg = styled.img`
   border-radius: 5px;
   width: 80px;
   height: 80px;
-  image-rendering: optimizeQuality;
+  min-width: 80px;
+  min-height: 80px;
 `;

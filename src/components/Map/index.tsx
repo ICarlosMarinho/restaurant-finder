@@ -27,16 +27,16 @@ const Map: React.FC = () => {
   useEffect(() => {
     dispatch(setLoading(true));
 
-    if (isLoaded) {
-      renderMap();
+    if (isLoaded && location.lat && location.lng) {
       getUserLocation();
+      renderMap();
     }
 
     if (loadError) console.log(loadError);
-  }, [isLoaded]);
+  }, [isLoaded, location]);
 
   useEffect(() => {
-    if (center && map) {
+    if (map && center) {
       getRestaurantsFromApi(
         map,
         center,
@@ -51,7 +51,7 @@ const Map: React.FC = () => {
         }
       );
     }
-  }, [center]);
+  }, [map, center]);
 
   const getUserLocation = () => {
     setCenter(new google.maps.LatLng(location.lat, location.lng));

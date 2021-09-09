@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setRestaurant } from "../../redux/modules/restaurants";
+import { setDetaisOpen, setRestaurant } from "../../redux/modules/restaurants";
 import { RootState } from "../../redux/store";
 import { getRestaurantDetailsFromApi } from "../../services/places";
 
@@ -36,6 +36,7 @@ const RestaurantCard: React.FC<ComponentProps> = ({
       id,
       (restaurant) => {
         dispatch(setRestaurant(restaurant));
+        dispatch(setDetaisOpen(true));
       },
       console.log
     );
