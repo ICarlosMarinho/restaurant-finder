@@ -1,4 +1,8 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setRestaurant } from "../../redux/modules/restaurants";
+import { RootState } from "../../redux/store";
+import { getRestaurantDetailsFromApi } from "../../services/places";
 
 import {
   CardContainer,
@@ -23,8 +27,18 @@ const RestaurantCard: React.FC<ComponentProps> = ({
   rating,
   imgUrl,
 }) => {
+  const { map } = useSelector((state: RootState) => state.places);
+  const dispatch = useDispatch();
+
   const selectRestaurant = (evt: React.MouseEvent<HTMLDivElement>) => {
-    console.log(id);
+    getRestaurantDetailsFromApi(
+      map,
+      id,
+      (restaurant) => {
+        dispatch(setRestaurant(restaurant));
+      },
+      console.log
+    );
   };
 
   return (

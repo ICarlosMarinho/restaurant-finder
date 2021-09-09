@@ -8,12 +8,17 @@ export const getFormatedRestaurant = (restaurant: any) => {
   };
 
   const formattedRestaurant: Restaurant = {
-    id: restaurant.place_id,
+    id: restaurant.place_id ?? null,
+    name: restaurant.name,
+    imgUrls:
+      restaurant.photos?.map((photo: any) => photo.getUrl()) ?? restaurant.icon,
+    phone: restaurant.formatted_phone_number ?? null,
+    website: restaurant.website ?? null,
+    open: restaurant.opening_hours?.isOpen() ?? null,
+    weekday: restaurant.opening_hours?.weekday_text ?? null,
     address: restaurant.formatted_address,
     location: formattedLocation,
-    name: restaurant.name,
     rating: restaurant.rating,
-    imgUrl: restaurant.photos ? restaurant.photos[0].getUrl() : restaurant.icon,
   };
 
   return formattedRestaurant;

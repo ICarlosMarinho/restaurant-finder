@@ -17,7 +17,7 @@ const RestaurantList: React.FC = () => {
         address={restaurant.address}
         name={restaurant.name}
         rating={restaurant.rating}
-        imgUrl={restaurant.imgUrl}
+        imgUrl={restaurant.imgUrls[0]}
       />
     ));
 

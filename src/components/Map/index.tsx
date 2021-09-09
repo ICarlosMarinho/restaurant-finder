@@ -6,24 +6,19 @@ import { Libraries } from "@react-google-maps/api/dist/utils/make-load-script-ur
 import { MapContainer } from "./style";
 import { getRestaurantsFromApi } from "../../services/places";
 import { setLoading, setRestaurants } from "../../redux/modules/restaurants";
-import Coordinates from "../../interfaces/Coordinates";
 import Restaurant from "../../interfaces/Restaurant";
-
-interface MapProps {
-  center: Coordinates | null;
-  zoom: number;
-}
+import { RootState } from "../../redux/store";
+import { setMap } from "../../redux/modules/places";
 
 const libraries: Libraries = ["places"];
 
-const Map: React.FC<MapProps> = ({ center, zoom }) => {
+const Map: React.FC = () => {
   const containerRef = useRef(null);
+  const [center, setCenter] = useState(null);
   const dispatch = useDispatch();
-  const [map, setMap] = useState<{
-    setCenter: (center: Coordinates) => void;
-  } | null>(null);
-  const [location, setLocation] = useState(null);
-  const [radius, setRadius] = useState(5000);
+  const { location, zoom, radius, map } = useSelector(
+    (state: RootState) => state.places
+  );
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.API_KEY as string,
     libraries,
@@ -32,7 +27,7 @@ const Map: React.FC<MapProps> = ({ center, zoom }) => {
   useEffect(() => {
     dispatch(setLoading(true));
 
-    if (isLoaded && center) {
+    if (isLoaded) {
       renderMap();
       getUserLocation();
     }
@@ -41,10 +36,10 @@ const Map: React.FC<MapProps> = ({ center, zoom }) => {
   }, [isLoaded]);
 
   useEffect(() => {
-    if (location && map) {
+    if (center && map) {
       getRestaurantsFromApi(
         map,
-        location,
+        center,
         radius,
         (restaurants: Restaurant[]) => {
           placeMarkers(restaurants);
@@ -56,14 +51,16 @@ const Map: React.FC<MapProps> = ({ center, zoom }) => {
         }
       );
     }
-  }, [location]);
+  }, [center]);
 
   const getUserLocation = () => {
-    setLocation(new google.maps.LatLng(center?.lat, center?.lng));
+    setCenter(new google.maps.LatLng(location.lat, location.lng));
   };
 
   const renderMap = () => {
-    setMap(new google.maps.Map(containerRef.current, { center, zoom }));
+    const map = new google.maps.Map(containerRef.current, { center, zoom });
+
+    dispatch(setMap(map));
   };
 
   const storeRestaurants = (restaurants: Restaurant[]) => {
@@ -79,7 +76,7 @@ const Map: React.FC<MapProps> = ({ center, zoom }) => {
         })
     );
 
-    map?.setCenter(restaurants[0].location);
+    map.setCenter(center);
   };
 
   return <MapContainer ref={containerRef} id="map-container"></MapContainer>;
