@@ -5,7 +5,7 @@ import { Libraries } from "@react-google-maps/api/dist/utils/make-load-script-ur
 
 import { MapContainer } from "./style";
 import { getRestaurantsFromApi } from "../../services/places";
-import { setRestaurants } from "../../redux/modules/restaurants";
+import { setLoading, setRestaurants } from "../../redux/modules/restaurants";
 import Coordinates from "../../interfaces/Coordinates";
 import Restaurant from "../../interfaces/Restaurant";
 
@@ -30,6 +30,8 @@ const Map: React.FC<MapProps> = ({ center, zoom }) => {
   });
 
   useEffect(() => {
+    dispatch(setLoading(true));
+
     if (isLoaded && center) {
       renderMap();
       getUserLocation();
@@ -47,8 +49,11 @@ const Map: React.FC<MapProps> = ({ center, zoom }) => {
         (restaurants: Restaurant[]) => {
           placeMarkers(restaurants);
           storeRestaurants(restaurants);
+          dispatch(setLoading(false));
         },
-        console.log
+        () => {
+          dispatch(setLoading(false));
+        }
       );
     }
   }, [location]);

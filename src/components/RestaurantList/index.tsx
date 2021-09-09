@@ -12,6 +12,7 @@ const RestaurantList: React.FC = () => {
   const renderCards = (restaurants: Restaurant[]) =>
     restaurants.map((restaurant: Restaurant) => (
       <RestaurantCard
+        id={restaurant.id}
         key={restaurant.id}
         address={restaurant.address}
         name={restaurant.name}

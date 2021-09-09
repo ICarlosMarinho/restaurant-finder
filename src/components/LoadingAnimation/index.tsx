@@ -1,10 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+import { RootState } from "../../redux/store";
 import Modal from "../Modal";
 import { Circle } from "./style";
 
 const LoadingAnimation: React.FC = () => {
+  const { loading } = useSelector((state: RootState) => state.restaurants);
+
   return (
-    <Modal modalOpen={true}>
+    <Modal modalOpen={loading}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="125"

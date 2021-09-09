@@ -3,16 +3,18 @@ import Restaurant from "../../interfaces/Restaurant";
 export interface RestaurantState {
   restaurants: Restaurant[];
   selectedRestaurant: Restaurant | null;
+  loading: boolean;
 }
 
 export interface RestaurantAction {
   type: string;
-  payload: Restaurant | Restaurant[];
+  payload: Restaurant | Restaurant[] | boolean;
 }
 
 const initialState: RestaurantState = {
   restaurants: new Array<Restaurant>(),
   selectedRestaurant: null,
+  loading: false,
 };
 
 const reducer = (
@@ -25,6 +27,9 @@ const reducer = (
 
     case types.SET_RESTAURANT:
       return { ...state, selectedRestaurant: action.payload as Restaurant };
+
+    case types.SET_LOADING:
+      return { ...state, loading: action.payload as boolean };
     default:
       return state;
   }
@@ -33,6 +38,7 @@ const reducer = (
 export const types = {
   SET_RESTAURANTS: "restaurants/SET_RESTAURANTS",
   SET_RESTAURANT: "restaurants/SET_RESTAURANT",
+  SET_LOADING: "restaurants/SET_LOADING",
 };
 
 export const setRestaurants = (restaurants: Restaurant[]): RestaurantAction => {
@@ -46,6 +52,13 @@ export const setRestaurant = (restaurant: Restaurant): RestaurantAction => {
   return {
     type: types.SET_RESTAURANT,
     payload: restaurant,
+  };
+};
+
+export const setLoading = (loading: boolean): RestaurantAction => {
+  return {
+    type: types.SET_LOADING,
+    payload: loading,
   };
 };
 

@@ -8,14 +8,27 @@ import {
   CardImg,
 } from "./style";
 
-const RestaurantCard: React.FC<{
+interface ComponentProps {
+  id: string;
   address: string;
   name: string;
   rating: number;
   imgUrl: string;
-}> = ({ address, name, rating, imgUrl }) => {
+}
+
+const RestaurantCard: React.FC<ComponentProps> = ({
+  id,
+  address,
+  name,
+  rating,
+  imgUrl,
+}) => {
+  const selectRestaurant = (evt: React.MouseEvent<HTMLDivElement>) => {
+    console.log(id);
+  };
+
   return (
-    <CardContainer>
+    <CardContainer onClick={selectRestaurant}>
       <CardInfoContainer>
         <CardTitle>{name}</CardTitle>
         <CardText>{address}</CardText>
