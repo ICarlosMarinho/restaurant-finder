@@ -16,11 +16,18 @@ export const DetailsContainer = styled.div`
   row-gap: 20px;
   max-width: 70%;
   position: relative;
+
+  @media (max-width: 1012px) {
+    max-width: 95%;
+    padding: 5px;
+  }
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   color: ${(props) => props.theme.colors.darkerGray};
   font-family: ${(props) => props.theme.fonts.title};
+  width: calc(100% - 85px);
+  text-align: center;
 `;
 
 export const Info = styled.p`
@@ -45,18 +52,33 @@ export const CarouselImg = styled.img`
   &:hover {
     cursor: pointer;
   }
+
+  @media (max-width: 1012px) {
+    width: 90px;
+    height: 90px;
+  }
 `;
 
 export const CloseButton = styled(Button)`
   position: absolute;
   top: 20px;
   right: 20px;
+
+  @media (max-width: 1012px) {
+    top: 5px;
+    right: 5px;
+  }
 `;
 
 export const WeekdayList = styled.ul`
   list-style: none;
   display: flex;
   column-gap: 5px;
+
+  @media (max-width: 1012px) {
+    flex-direction: column;
+    row-gap: 2px;
+  }
 `;
 
 export const WeekdayItem = styled.li`

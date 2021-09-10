@@ -20,6 +20,12 @@ export const CardContainer = styled.div`
   &:hover p {
     color: #fff;
   }
+
+  @media (max-width: 1012px) {
+    width: 100vw;
+    min-width: 100vw;
+    padding: 5px;
+  }
 `;
 
 export const CardInfoContainer = styled.div`

@@ -38,9 +38,21 @@ const RestaurantDetails: React.FC = () => {
     slidesToScroll: 1,
     autoplay: true,
     arrows: false,
-    initialSlide: 0,
     pauseOnHover: true,
-    variableWidth: false,
+    responsive: [
+      {
+        breakpoint: 1012,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
   };
 
   const closeModal = () => dispatch(setDetaisOpen(false));

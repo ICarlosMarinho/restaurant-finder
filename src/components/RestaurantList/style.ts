@@ -8,4 +8,12 @@ export const ListContainer = styled.div`
   overflow-y: auto;
   background-color: ${(props) => props.theme.colors.lighterGray};
   scroll-behavior: smooth;
+
+  @media (max-width: 1012px) {
+    flex-direction: row;
+    max-width: 100%;
+    overflow-x: auto;
+    column-gap: 2px;
+    row-gap: 0;
+  }
 `;

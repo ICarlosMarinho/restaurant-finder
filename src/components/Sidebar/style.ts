@@ -8,4 +8,18 @@ export const SidebarContainer = styled.aside`
   align-items: center;
   justify-content: flex-start;
   padding: 20px 0;
+
+  @media (max-width: 1012px) {
+    row-gap: 10px;
+    padding: 10px 0 0 0;
+  }
+`;
+
+export const LogoImg = styled.img`
+  width: auto;
+  height: 100px;
+
+  @media (max-width: 1012px) {
+    height: 50px;
+  }
 `;

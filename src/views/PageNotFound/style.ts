@@ -13,6 +13,7 @@ export const PageNotFoundContainer = styled.div`
 export const Title = styled.h1`
   font-family: ${(props) => props.theme.fonts.title};
   color: ${(props) => props.theme.colors.primary};
+  text-align: center;
 `;
 
 export const BackToHomeButton = styled(Link)`

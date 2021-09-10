@@ -10,7 +10,7 @@ export interface SearchBarProps {
 }
 
 export const SearchContainer = styled.div<SearchBarProps & SearchInput>`
-  width: ${(props) => props.containerHeight || "300px"};
+  width: ${(props) => props.containerWidth || "100%"};
   height: ${(props) => props.containerHeight || "40px"};
   display: flex;
   flex-direction: row;
