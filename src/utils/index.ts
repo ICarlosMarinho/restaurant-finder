@@ -1,6 +1,3 @@
-import Coordinates from "../interfaces/Coordinates";
-import Restaurant from "../interfaces/Restaurant";
-
 export const getFormatedRestaurant = (restaurant: any) => {
   const formattedLocation: Coordinates = {
     lat: restaurant.geometry.location.lat(),

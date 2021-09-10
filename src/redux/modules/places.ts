@@ -1,5 +1,3 @@
-import Coordinates from "../../interfaces/Coordinates";
-
 export interface PlacesState {
   map: any;
   location: Coordinates;

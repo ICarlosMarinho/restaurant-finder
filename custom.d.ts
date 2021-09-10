@@ -4,3 +4,21 @@ declare module "*.svg" {
 }
 
 declare const google: any;
+
+declare interface Coordinates {
+  lat: number;
+  lng: number;
+}
+
+declare interface Restaurant {
+  id: string;
+  name: string;
+  address: string;
+  imgUrls: string[];
+  phone: string;
+  website: string;
+  open: string;
+  weekday: string[];
+  location: Coordinates;
+  rating: number;
+}

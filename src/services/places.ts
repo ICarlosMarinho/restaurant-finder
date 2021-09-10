@@ -1,5 +1,3 @@
-import Coordinates from "../interfaces/Coordinates";
-import Restaurant from "../interfaces/Restaurant";
 import { getFormatedRestaurant } from "../utils";
 
 export const getRestaurantsFromApi = (

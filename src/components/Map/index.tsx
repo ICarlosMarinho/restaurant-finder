@@ -6,7 +6,6 @@ import { Libraries } from "@react-google-maps/api/dist/utils/make-load-script-ur
 import { MapContainer } from "./style";
 import { getRestaurantsFromApi } from "../../services/places";
 import { setLoading, setRestaurants } from "../../redux/modules/restaurants";
-import Restaurant from "../../interfaces/Restaurant";
 import { RootState } from "../../redux/store";
 import { setMap } from "../../redux/modules/places";
 

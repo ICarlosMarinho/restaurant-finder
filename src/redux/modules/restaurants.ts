@@ -1,5 +1,3 @@
-import Restaurant from "../../interfaces/Restaurant";
-
 export interface RestaurantState {
   restaurants: Restaurant[];
   selectedRestaurant: Restaurant | null;
