@@ -1,20 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import Title from "../../components/Title";
-import Button from "../../components/Button";
+import { BackToHomeButton, PageNotFoundContainer, Title } from "./style";
 
 const PageNotFound: React.FC = () => {
-  useEffect(() => {
-    document.title = "Oops!";
-  }, []);
-
   return (
-    <>
-      <Title>PageNotFound is working!</Title>
-      <Button colorType="alert" buttonWidth="200px">
-        Back To Home
-      </Button>
-    </>
+    <PageNotFoundContainer>
+      <Title>Ops! página não encontrada.</Title>
+      <BackToHomeButton to="/">Ir para home</BackToHomeButton>
+    </PageNotFoundContainer>
   );
 };
 

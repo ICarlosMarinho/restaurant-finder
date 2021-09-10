@@ -34,7 +34,7 @@ const RestaurantDetails: React.FC = () => {
     slidesToShow:
       selectedRestaurant.imgUrls?.length - 1 > 5
         ? 5
-        : selectedRestaurant.imgUrls?.length - 1,
+        : selectedRestaurant.imgUrls.length - 1,
     slidesToScroll: 1,
     autoplay: true,
     arrows: false,
@@ -60,7 +60,7 @@ const RestaurantDetails: React.FC = () => {
   const renderWeekdayList = () =>
     selectedRestaurant.weekday ? (
       <WeekdayList>
-        {selectedRestaurant.weekday.map((day: string, index: number) => (
+        {selectedRestaurant.weekday?.map((day: string, index: number) => (
           <WeekdayItem key={index}>{day}</WeekdayItem>
         ))}
       </WeekdayList>

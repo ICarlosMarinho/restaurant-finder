@@ -8,18 +8,21 @@ import PageNotFound from "./views/PageNotFound";
 import theme from "./theme";
 import ResetStyle from "./ResetStyle";
 import store from "./redux/store";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const App: React.FC = () => {
   return (
     <ReduxProvider store={store}>
       <ThemeProvider theme={theme}>
         <ResetStyle />
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="*" component={PageNotFound} />
-          </Switch>
-        </BrowserRouter>
+        <ErrorBoundary>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="*" component={PageNotFound} />
+            </Switch>
+          </BrowserRouter>
+        </ErrorBoundary>
       </ThemeProvider>
     </ReduxProvider>
   );
