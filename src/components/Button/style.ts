@@ -8,6 +8,9 @@ export interface ButtonProps {
 export const StyledButton = styled.button<ButtonProps>`
   border: none;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 40px;
   font-weight: bold;
   font-family: ${(props) => props.theme.fonts.title};

@@ -1,6 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDetaisOpen, setRestaurant } from "../../redux/modules/restaurants";
+import {
+  setDetaisOpen,
+  setLoading,
+  setRestaurant,
+} from "../../redux/modules/restaurants";
 import { RootState } from "../../redux/store";
 import { getRestaurantDetailsFromApi } from "../../services/places";
 
@@ -31,12 +35,15 @@ const RestaurantCard: React.FC<ComponentProps> = ({
   const dispatch = useDispatch();
 
   const selectRestaurant = (evt: React.MouseEvent<HTMLDivElement>) => {
+    dispatch(setLoading(true));
+
     getRestaurantDetailsFromApi(
       map,
       id,
       (restaurant) => {
         dispatch(setRestaurant(restaurant));
         dispatch(setDetaisOpen(true));
+        dispatch(setLoading(false));
       },
       console.log
     );
