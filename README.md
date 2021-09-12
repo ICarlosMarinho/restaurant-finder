@@ -8,6 +8,6 @@ Web app para busca de restaurantes próximos à localização do usuário (a par
 2.  No diretório raiz do mesmo, execute o comando > npm install
 3.  Após o processo de instalação das dependências, execute o comando > npm run start
 
-Obs.: Para ter acesso as APIs do Google é necessário ter uma _api key_, a qual pode ser gerada no console do Google Cloud. Após obter a _api key_, basta criar um arquivo _.env_ e adicionar a seguinte linha:
+Obs.: Para ter acesso as APIs do Google é necessário ter uma _api key_, a qual pode ser gerada no console do Google Cloud. Após obter a _api key_, basta criar um arquivo _.env_ na raiz do projeto e adicionar a seguinte linha:
 
-> API_KEY=_api key_
+> API_KEY=<Cole a key aqui>
