@@ -10,4 +10,4 @@ Web app para busca de restaurantes próximos à localização do usuário (a par
 
 Obs.: Para ter acesso as APIs do Google é necessário ter uma _api key_, a qual pode ser gerada no console do Google Cloud. Após obter a _api key_, basta criar um arquivo _.env_ na raiz do projeto e adicionar a seguinte linha:
 
-> API_KEY=<Cole a key aqui>
+> API_KEY=**Cole a key aqui**
