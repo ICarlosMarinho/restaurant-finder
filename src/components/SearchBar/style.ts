@@ -9,7 +9,7 @@ export interface SearchBarProps {
   containerHeight?: string;
 }
 
-export const SearchContainer = styled.div<SearchBarProps & SearchInput>`
+export const SearchContainer = styled.form<SearchBarProps & SearchInput>`
   width: ${(props) => props.containerWidth || "100%"};
   height: ${(props) => props.containerHeight || "40px"};
   display: flex;

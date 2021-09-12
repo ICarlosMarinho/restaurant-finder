@@ -1,17 +1,19 @@
 import { getFormatedRestaurant } from "../utils";
 
-export const getRestaurantsFromApi = (
+export const getRestaurantsFromApi: (
   map: any,
   location: Coordinates | null,
   radius: number,
   success: (resaurants: Restaurant[]) => void,
-  error: (status: any) => void
-): void => {
+  error: (status: any) => void,
+  query?: string
+) => void = (map, location, radius, success, error, query = ""): void => {
   const service = new google.maps.places.PlacesService(map);
   const request = {
     location,
     radius,
     type: ["restaurant"],
+    query,
   };
 
   service.textSearch(request, (results: [], status: string) => {

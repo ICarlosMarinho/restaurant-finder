@@ -46,12 +46,6 @@ const RestaurantDetails: React.FC = () => {
           slidesToShow: 3,
         },
       },
-      {
-        breakpoint: 800,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
     ],
   };
 

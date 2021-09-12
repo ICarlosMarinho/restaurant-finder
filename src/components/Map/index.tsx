@@ -1,60 +1,29 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLoadScript } from "@react-google-maps/api";
-import { Libraries } from "@react-google-maps/api/dist/utils/make-load-script-url";
 
 import { MapContainer } from "./style";
-import { getRestaurantsFromApi } from "../../services/places";
-import { setLoading, setRestaurants } from "../../redux/modules/restaurants";
 import { RootState } from "../../redux/store";
 import { setMap } from "../../redux/modules/places";
 
-const libraries: Libraries = ["places"];
+interface ComponentProps {
+  center: any;
+  isLoaded: boolean;
+}
 
-const Map: React.FC = () => {
+const Map: React.FC<ComponentProps> = ({ isLoaded, center }) => {
   const containerRef = useRef(null);
-  const [center, setCenter] = useState(null);
+  const [markers, setMarkers] = useState<any[]>([]);
   const dispatch = useDispatch();
-  const { location, zoom, radius, map } = useSelector(
-    (state: RootState) => state.places
-  );
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.API_KEY as string,
-    libraries,
-  });
+  const { restaurants } = useSelector((state: RootState) => state.restaurants);
+  const { zoom, map } = useSelector((state: RootState) => state.places);
 
   useEffect(() => {
-    dispatch(setLoading(true));
-
-    if (isLoaded && location.lat && location.lng) {
-      getUserLocation();
-      renderMap();
-    }
-
-    if (loadError) console.log(loadError);
-  }, [isLoaded, location]);
+    if (isLoaded) renderMap();
+  }, [isLoaded]);
 
   useEffect(() => {
-    if (map && center) {
-      getRestaurantsFromApi(
-        map,
-        center,
-        radius,
-        (restaurants: Restaurant[]) => {
-          placeMarkers(restaurants);
-          storeRestaurants(restaurants);
-          dispatch(setLoading(false));
-        },
-        () => {
-          dispatch(setLoading(false));
-        }
-      );
-    }
-  }, [map, center]);
-
-  const getUserLocation = () => {
-    setCenter(new google.maps.LatLng(location.lat, location.lng));
-  };
+    if (center) placeMarkers(restaurants);
+  }, [restaurants, center]);
 
   const renderMap = () => {
     const map = new google.maps.Map(containerRef.current, { center, zoom });
@@ -62,18 +31,26 @@ const Map: React.FC = () => {
     dispatch(setMap(map));
   };
 
-  const storeRestaurants = (restaurants: Restaurant[]) => {
-    dispatch(setRestaurants(restaurants));
+  const removeMarkers = () => {
+    if (markers.length) {
+      for (let i = 0; i < markers.length; i++) markers[i].setMap(null);
+    }
+
+    setMarkers([]);
   };
 
   const placeMarkers = (restaurants: Restaurant[]) => {
-    restaurants.map(
+    removeMarkers();
+
+    const newMarkers = restaurants.map(
       (restaurant: Restaurant) =>
         new google.maps.Marker({
           position: restaurant.location,
           map,
         })
     );
+
+    setMarkers(newMarkers);
 
     map.setCenter(center);
   };

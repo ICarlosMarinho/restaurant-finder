@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Lupa from "../../../assets/lupa.svg";
+import { setLoading, setRestaurants } from "../../redux/modules/restaurants";
+import { RootState } from "../../redux/store";
+import { getRestaurantsFromApi } from "../../services/places";
 
 import {
   SearchBarProps,
@@ -9,20 +13,34 @@ import {
   SearchInput,
 } from "./style";
 
-interface ExtendendProps extends SearchBarProps {
-  searchCallback: Function;
-}
-
-const SearchBar: React.FC<ExtendendProps> = ({
+const SearchBar: React.FC<SearchBarProps> = ({
   containerWidth,
   containerHeight,
-  searchCallback,
 }) => {
   const [searchStr, setSearchStr] = useState("");
   const [inputActive, setInputActive] = useState(false);
+  const { map, location, radius } = useSelector(
+    (state: RootState) => state.places
+  );
+  const dispatch = useDispatch();
 
   const handleClick = (evt: React.MouseEvent) => {
-    searchCallback(evt, searchStr);
+    evt.preventDefault();
+
+    dispatch(setLoading(true));
+    getRestaurantsFromApi(
+      map,
+      location,
+      radius,
+      (restaurants) => {
+        dispatch(setRestaurants(restaurants));
+        dispatch(setLoading(false));
+      },
+      () => {
+        dispatch(setLoading(false));
+      },
+      searchStr
+    );
   };
 
   return (
@@ -42,7 +60,7 @@ const SearchBar: React.FC<ExtendendProps> = ({
       />
       <SearchButton
         inputActive={inputActive}
-        type="button"
+        type="submit"
         onClick={handleClick}>
         <img src={Lupa} width="80%" height="80%" />
       </SearchButton>
